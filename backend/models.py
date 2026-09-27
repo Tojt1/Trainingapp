@@ -1,9 +1,10 @@
 import sqlalchemy
-from sqlalchemy.orm import declarative_base, mapped_column, Mapped
+from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 from sqlalchemy import Integer, String, DateTime
 import datetime
 
-Base = declarative_base()
+class Base(DeclarativeBase):
+    pass
 
 class User(Base):
     __tablename__="users"
@@ -12,4 +13,4 @@ class User(Base):
     name:Mapped[str] = mapped_column(String)
     email:Mapped[str] = mapped_column(String, nullable=False)
     password:Mapped[str] = mapped_column(String, nullable=False)
-    created:Mapped[datetime.datetime] = mapped_column(DateTime, function=sqlalchemy.func.now())
+    created:Mapped[datetime.datetime] = mapped_column(DateTime, server_default=sqlalchemy.func.now())
