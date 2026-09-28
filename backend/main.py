@@ -1,6 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import services
 from schemas import Register
+import exceptions
+
+
 app = FastAPI()
 
 @app.get("/")
@@ -9,4 +12,25 @@ def hello_world():
 
 @app.post("/register")
 def register_user(user:Register):
-    return services.register(user)
+    try:
+        return services.register(user)
+    except exceptions.InvalidEmailError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.HashingPasswordError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.CheckingPasswordError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.RegisterError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
