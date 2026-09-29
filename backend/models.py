@@ -11,7 +11,7 @@ class User(Base):
 
     id:Mapped[int] = mapped_column(Integer, primary_key=True)
     name:Mapped[str] = mapped_column(String)
-    age:Mapped[int] = mapped_column(Integer)
+    age:Mapped[int] = mapped_column(Integer, nullable=True)
     email:Mapped[str] = mapped_column(String, nullable=False)
     password:Mapped[str] = mapped_column(String, nullable=False)
     created:Mapped[datetime.datetime] = mapped_column(DateTime, server_default=sqlalchemy.func.now())
@@ -25,7 +25,7 @@ class Workouts(Base):
     id:Mapped[int] = mapped_column(Integer, primary_key=True)
     user_id:Mapped[int] = mapped_column(ForeignKey("users.id"))
     started: Mapped[datetime.datetime] = mapped_column(DateTime)
-    ended: Mapped[datetime.datetime] = mapped_column(DateTime)
+    ended: Mapped[datetime.datetime] = mapped_column(DateTime, nullable=True)
     author:Mapped["User"] = relationship(
         back_populates="workouts"
     )
