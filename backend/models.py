@@ -40,7 +40,21 @@ class WorkoutPlan(Base):
     )
 
 class WorkoutPlanExercise(Base):
-    pass
+    id: Mapped[int] = mapped_column(primary_key=True)
+
+    workout_plan_id:Mapped[int] = mapped_column(
+        ForeignKey("workout_plan.id")
+    )
+    excecise_id: Mapped[int] = mapped_column(
+        ForeignKey("excercise.id")
+    )
+
+
+    workout_plan: Mapped["WorkoutPlan"] = relationship(
+        back_populates="excerise"
+    )
+
+    excercise: Mapped["Exercise"] = relationship()
 
 class Exercise(Base):
     pass
