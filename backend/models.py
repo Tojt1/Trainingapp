@@ -29,3 +29,19 @@ class Workouts(Base):
     author:Mapped["User"] = relationship(
         back_populates="workouts"
     )
+
+class WorkoutPlan(Base):
+    __tablename__ = "workout_plan"
+
+    id:Mapped[int] = mapped_column(primary_key=True)
+    name: Mapped[str] = mapped_column(String)
+    exercises: Mapped[list["WorkoutPlanExercise"]] = relationship(
+        back_populates="workout_plan"
+    )
+
+class WorkoutPlanExercise(Base):
+    pass
+
+class Exercise(Base):
+    pass
+
