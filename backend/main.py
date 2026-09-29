@@ -37,4 +37,26 @@ def register_user(user:Register):
 
 @app.post("/login")
 def login_user(user:Login):
-    return services.login(user)
+    try:
+        return services.login(user)
+
+    except exceptions.InvalidEmailError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.InvalidPasswordError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.LoginError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )

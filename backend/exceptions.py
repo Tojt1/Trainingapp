@@ -8,3 +8,5 @@ class CheckingPasswordError(Exception):
     pass
 class InvalidPasswordError(Exception):
     pass
+class LoginError(Exception):
+    pass

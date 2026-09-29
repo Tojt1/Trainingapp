@@ -17,13 +17,17 @@ def register(user):
         raise exceptions.RegisterError(str(e))
 
 def login(user):
-    valid_email(user.email)
-    password= repository.get_user_password(user.email)
-    if auth.check_password(user.password, password) is None:
-        raise exceptions.InvalidPasswordError
+    try:
+        if not valid_email(user.email):
+            raise exceptions.InvalidEmailError("podany email jest nieprawidłowy")
+        password= repository.get_user_password(user.email)
+        if auth.check_password(user.password, password) is None:
+            raise exceptions.InvalidPasswordError("Podane hasło jest niepoprawne")
 
-    result = repository.login_user(user.email)
-    if result is None:
-        raise exceptions.InvalidPasswordError
+        result = repository.login_user(user.email)
+        if result is None:
+            raise exceptions.LoginError("Email lub hasło jest nieprawidłowe")
 
-    return result
+        return result
+    except Exception as e:
+        raise Exception(str(e))
