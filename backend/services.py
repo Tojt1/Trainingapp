@@ -1,5 +1,5 @@
 import repository
-from backend import auth
+import auth
 import exceptions
 
 def valid_email(email):
@@ -15,3 +15,15 @@ def register(user):
         repository.sign_up(user, hashed_password)
     except Exception as e:
         raise exceptions.RegisterError(str(e))
+
+def login(user):
+    valid_email(user.email)
+    password= repository.get_user_password(user.email)
+    if auth.check_password(user.password, password) is None:
+        raise exceptions.InvalidPasswordError
+
+    result = repository.login_user(user.email)
+    if result is None:
+        raise exceptions.InvalidPasswordError
+
+    return result

@@ -6,3 +6,4 @@ sqlalchemy
 dotenv
 psycopg[binary]
 bcrypt
+pyjwt

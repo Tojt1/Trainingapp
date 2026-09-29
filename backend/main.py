@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import services
-from schemas import Register
+from schemas import Register, Login
 import exceptions
 
 
@@ -34,3 +34,7 @@ def register_user(user:Register):
             status_code=400,
             detail=str(e)
         )
+
+@app.post("/login")
+def login_user(user:Login):
+    return services.login(user)

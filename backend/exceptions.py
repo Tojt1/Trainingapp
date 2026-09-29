@@ -6,3 +6,5 @@ class HashingPasswordError(Exception):
     pass
 class CheckingPasswordError(Exception):
     pass
+class InvalidPasswordError(Exception):
+    pass

@@ -1,3 +1,4 @@
+import sqlalchemy
 from sqlalchemy. orm import Session
 from database import engine
 from models import User
@@ -14,3 +15,13 @@ def sign_up(user_inf, password):
             session.commit()
     except Exception as e:
         raise exceptions.RegisterError(str(e))
+
+def get_user_password(email):
+    with Session(engine) as session:
+        query = sqlalchemy.select(User.password).where(User.email == email)
+        return session.execute(query).scalar_one_or_none()
+
+def login_user(email):
+    with Session(engine) as session:
+        query = sqlalchemy.select(User.id, User.name).where(User.email == email)
+        return session.execute(query).mappings().one_or_none()
