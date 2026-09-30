@@ -34,4 +34,7 @@ def login(user):
         raise Exception(str(e))
 
 def add_exercise(exercise):
-    repository.create_exercise(exercise.name)
+    try:
+        repository.create_exercise(exercise.name)
+    except Exception as e:
+        raise exceptions.CreateExerciseError(str(e))

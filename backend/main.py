@@ -63,5 +63,15 @@ def login_user(user:Login):
 
 @app.post("/exercises")
 def add_new_exercise(exercise:AddExercise):
-    if services.add_exercise(exercise):
+    try:
         return {"information": "pomyslnie utworzono"}
+    except exceptions.CreateExerciseError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )

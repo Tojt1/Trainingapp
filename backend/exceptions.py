@@ -10,3 +10,5 @@ class InvalidPasswordError(Exception):
     pass
 class LoginError(Exception):
     pass
+class CreateExerciseError(Exception):
+    pass

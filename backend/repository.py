@@ -27,7 +27,10 @@ def login_user(email):
         return session.execute(query).mappings().one_or_none()
 
 def create_exercise(exercise_name):
-    with Session(engine) as session:
-        exercise = Exercise(name=exercise_name)
-        session.add(exercise)
-        session.commit()
+    try:
+        with Session(engine) as session:
+            exercise = Exercise(name=exercise_name)
+            session.add(exercise)
+            session.commit()
+    except Exception as e:
+        raise exceptions.CreateExerciseError(str(e))
