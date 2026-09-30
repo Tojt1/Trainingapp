@@ -75,3 +75,7 @@ def add_new_exercise(exercise:AddExercise):
             status_code=400,
             detail=str(e)
         )
+
+@app.get("/exercises")
+def get_all_exercises():
+    return services.get_exercises()

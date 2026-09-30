@@ -36,3 +36,7 @@ def create_exercise(exercise_name):
     except Exception as e:
         session.rollback()
         raise exceptions.CreateExerciseError(str(e))
+
+def download_exercises():
+    with Session(engine) as session:
+        return session.execute(sqlalchemy.select(Exercise)).scalars().all()
