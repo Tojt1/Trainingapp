@@ -27,7 +27,8 @@ def login(user):
         result = repository.login_user(user.email)
         if result is None:
             raise exceptions.LoginError("Email lub hasło jest nieprawidłowe")
+        print("res", result)
+        return auth.create_jwt_token(result, user.email)
 
-        return result
     except Exception as e:
         raise Exception(str(e))

@@ -16,7 +16,7 @@ class User(Base):
     password:Mapped[str] = mapped_column(String, nullable=False)
     created:Mapped[datetime.datetime] = mapped_column(DateTime, server_default=sqlalchemy.func.now())
     workouts: Mapped[list["Workouts"]] = relationship(
-        back_populates="user"
+        back_populates="author"
     )
 
 class Workouts(Base):
@@ -56,9 +56,8 @@ class WorkoutPlanExercise(Base):
         ForeignKey("excercise.id")
     )
 
-
     workout_plan: Mapped["WorkoutPlan"] = relationship(
-        back_populates="exercise"
+        back_populates="exercises"
     )
 
     excercise: Mapped["Exercise"] = relationship()
