@@ -30,6 +30,11 @@ class Workouts(Base):
         back_populates="workouts"
     )
 
+class Exercise(Base):
+    __tablename__ = "excercise"
+    id:Mapped[int] = mapped_column(primary_key=True)
+    name:Mapped[str] = mapped_column(String)
+
 class WorkoutPlan(Base):
     __tablename__ = "workout_plan"
 
@@ -40,23 +45,22 @@ class WorkoutPlan(Base):
     )
 
 class WorkoutPlanExercise(Base):
+    __tablename__= "workoutplan_exercise"
+
     id: Mapped[int] = mapped_column(primary_key=True)
 
     workout_plan_id:Mapped[int] = mapped_column(
         ForeignKey("workout_plan.id")
     )
-    excecise_id: Mapped[int] = mapped_column(
+    excercise_id: Mapped[int] = mapped_column(
         ForeignKey("excercise.id")
     )
 
 
     workout_plan: Mapped["WorkoutPlan"] = relationship(
-        back_populates="excerise"
+        back_populates="exercise"
     )
 
     excercise: Mapped["Exercise"] = relationship()
 
-class Exercise(Base):
-    id:Mapped[int] = mapped_column(primary_key=True)
-    name:Mapped[str] = mapped_column(String)
 
