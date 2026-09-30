@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy. orm import Session
 from database import engine
-from models import User
+from models import User, Exercise
 import exceptions
 
 def sign_up(user_inf, password):
@@ -25,3 +25,9 @@ def login_user(email):
     with Session(engine) as session:
         query = sqlalchemy.select(User.id, User.name).where(User.email == email)
         return session.execute(query).mappings().one_or_none()
+
+def create_exercise(exercise_name):
+    with Session(engine) as session:
+        exercise = Exercise(name=exercise_name)
+        session.add(exercise)
+        session.commit()

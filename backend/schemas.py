@@ -8,3 +8,6 @@ class Register(BaseModel):
 class Login(BaseModel):
     email:str
     password:str
+
+class AddExercise(BaseModel):
+    name:str
