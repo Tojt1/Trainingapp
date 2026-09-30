@@ -14,6 +14,7 @@ def sign_up(user_inf, password):
             session.add(user)
             session.commit()
     except Exception as e:
+        session.rollback()
         raise exceptions.RegisterError(str(e))
 
 def get_user_password(email):
@@ -33,4 +34,5 @@ def create_exercise(exercise_name):
             session.add(exercise)
             session.commit()
     except Exception as e:
+        session.rollback()
         raise exceptions.CreateExerciseError(str(e))

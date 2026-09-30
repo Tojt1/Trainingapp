@@ -1,3 +1,5 @@
+from requests import session
+
 import repository
 import auth
 import exceptions
