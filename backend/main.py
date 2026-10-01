@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import services
-from schemas import Register, Login, AddExercise
+from schemas import Register, Login, AddExercise, WorkoutPlan
 import exceptions
 
 
@@ -90,3 +90,7 @@ def get_all_exercises():
             status_code=400,
             detail=str(e)
         )
+
+@app.post("/workoutplan")
+def create_workout_plan(data:WorkoutPlan):
+    return services.create_workout(data)

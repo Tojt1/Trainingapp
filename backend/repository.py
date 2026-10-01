@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy. orm import Session
 from database import engine
-from models import User, Exercise
+from models import User, Exercise, WorkoutPlan, WorkoutPlanExercise
 import exceptions
 
 def sign_up(user_inf, password):
@@ -43,3 +43,16 @@ def download_exercises():
             return session.execute(sqlalchemy.select(Exercise)).scalars().all()
     except Exception as e:
         raise exceptions.GetExercisesError(str(e))
+
+def add_workout(data):
+    print(data)
+    with Session(engine) as session:
+        workout = WorkoutPlan(name=data.name, exercises=[
+            WorkoutPlanExercise(excercise_id=exercise.exercise_id,
+                                weight=exercise.weight,
+                                reps=exercise.reps)
+            for exercise in data.exercises
+        ])
+
+        session.add(workout)
+        session.commit()

@@ -11,3 +11,12 @@ class Login(BaseModel):
 
 class AddExercise(BaseModel):
     name:str
+
+class WorkoutPlanExercises(BaseModel):
+    exercise_id:int
+    weight:float
+    reps:int
+
+class WorkoutPlan(BaseModel):
+    name: str
+    exercises: list[WorkoutPlanExercises]
