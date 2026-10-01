@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, relationship
-from sqlalchemy import Integer, String, DateTime, ForeignKey
+from sqlalchemy import Integer, String, DateTime, ForeignKey, Float
 import datetime
 
 class Base(DeclarativeBase):
@@ -59,7 +59,8 @@ class WorkoutPlanExercise(Base):
     workout_plan: Mapped["WorkoutPlan"] = relationship(
         back_populates="exercises"
     )
-
     excercise: Mapped["Exercise"] = relationship()
+    weight:Mapped[float] = mapped_column(Float, nullable=True)
+    reps:Mapped[int] = mapped_column(Integer)
 
 
