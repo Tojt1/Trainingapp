@@ -46,4 +46,7 @@ def get_exercises():
         raise exceptions.GetExercisesError(str(e))
 
 def create_workout(data):
-    return repository.add_workout(data)
+    try:
+        return repository.add_workout(data)
+    except exceptions.AddWorkoutError as e:
+        raise exceptions.AddWorkoutError(str(e))

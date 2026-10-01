@@ -18,3 +18,5 @@ class JwtDecodeError(Exception):
     pass
 class GetExercisesError(Exception):
     pass
+class AddWorkoutError(Exception):
+    pass

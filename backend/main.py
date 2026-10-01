@@ -93,4 +93,15 @@ def get_all_exercises():
 
 @app.post("/workoutplan")
 def create_workout_plan(data:WorkoutPlan):
-    return services.create_workout(data)
+    try:
+        return services.create_workout(data)
+    except exceptions.AddWorkoutError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )

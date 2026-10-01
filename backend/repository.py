@@ -45,14 +45,16 @@ def download_exercises():
         raise exceptions.GetExercisesError(str(e))
 
 def add_workout(data):
-    print(data)
-    with Session(engine) as session:
-        workout = WorkoutPlan(name=data.name, exercises=[
-            WorkoutPlanExercise(excercise_id=exercise.exercise_id,
-                                weight=exercise.weight,
-                                reps=exercise.reps)
-            for exercise in data.exercises
-        ])
+    try:
+        with Session(engine) as session:
+            workout = WorkoutPlan(name=data.name, exercises=[
+                WorkoutPlanExercise(excercise_id=exercise.exercise_id,
+                                    weight=exercise.weight,
+                                    reps=exercise.reps)
+                for exercise in data.exercises
+            ])
 
-        session.add(workout)
-        session.commit()
+            session.add(workout)
+            session.commit()
+    except exceptions.AddWorkoutError as e:
+        raise exceptions.AddWorkoutError(str(e))
