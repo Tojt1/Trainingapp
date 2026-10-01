@@ -40,4 +40,7 @@ def add_exercise(exercise):
         raise exceptions.CreateExerciseError(str(e))
 
 def get_exercises():
-    return repository.download_exercises()
+    try:
+        return repository.download_exercises()
+    except Exception as e:
+        raise exceptions.GetExercisesError(str(e))

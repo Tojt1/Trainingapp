@@ -78,4 +78,15 @@ def add_new_exercise(exercise:AddExercise):
 
 @app.get("/exercises")
 def get_all_exercises():
-    return services.get_exercises()
+    try:
+        return services.get_exercises()
+    except exceptions.GetExercisesError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )

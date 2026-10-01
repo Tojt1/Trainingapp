@@ -12,3 +12,9 @@ class LoginError(Exception):
     pass
 class CreateExerciseError(Exception):
     pass
+class JwtCreateError(Exception):
+    pass
+class JwtDecodeError(Exception):
+    pass
+class GetExercisesError(Exception):
+    pass

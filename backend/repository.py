@@ -38,5 +38,8 @@ def create_exercise(exercise_name):
         raise exceptions.CreateExerciseError(str(e))
 
 def download_exercises():
-    with Session(engine) as session:
-        return session.execute(sqlalchemy.select(Exercise)).scalars().all()
+    try:
+        with Session(engine) as session:
+            return session.execute(sqlalchemy.select(Exercise)).scalars().all()
+    except Exception as e:
+        raise exceptions.GetExercisesError(str(e))
