@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy. orm import Session
 from database import engine
-from models import User, Exercise, WorkoutPlan, WorkoutPlanExercise
+from models import User, Exercise, WorkoutPlan, WorkoutPlanExercise, Workouts
 import exceptions
 
 def sign_up(user_inf, password):
@@ -58,3 +58,8 @@ def add_workout(data):
             session.commit()
     except exceptions.AddWorkoutError as e:
         raise exceptions.AddWorkoutError(str(e))
+
+def get_all_user_workouts(user_id):
+    with Session(engine) as session:
+        query = sqlalchemy.select(Workouts).where(Workouts.user_id == user_id)
+        return session.execute(query).mappings().one_or_none()

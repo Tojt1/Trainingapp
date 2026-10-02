@@ -50,3 +50,7 @@ def create_workout(data):
         return repository.add_workout(data)
     except exceptions.AddWorkoutError as e:
         raise exceptions.AddWorkoutError(str(e))
+
+def dashboard(jwt):
+    user = auth.decode_jwt_token(jwt)
+    return repository.get_all_user_workouts(user["id"])

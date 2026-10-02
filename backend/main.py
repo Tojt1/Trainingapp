@@ -105,3 +105,6 @@ def create_workout_plan(data:WorkoutPlan):
             status_code=400,
             detail=str(e)
         )
+@app.post("/dashboard")
+def shows_dashboard(jwt):
+    return services.dashboard(jwt)

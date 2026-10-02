@@ -29,6 +29,12 @@ class Workouts(Base):
     author:Mapped["User"] = relationship(
         back_populates="workouts"
     )
+    workout_plan_id:Mapped[int] = mapped_column(
+        ForeignKey("workout_plan.id")
+    )
+    workout_plan:Mapped["WorkoutPlan"] = relationship(
+        back_populates="workouts"
+    )
 
 class Exercise(Base):
     __tablename__ = "excercise"
@@ -41,6 +47,9 @@ class WorkoutPlan(Base):
     id:Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String)
     exercises: Mapped[list["WorkoutPlanExercise"]] = relationship(
+        back_populates="workout_plan"
+    )
+    workouts:Mapped["Workouts"] = relationship(
         back_populates="workout_plan"
     )
 
