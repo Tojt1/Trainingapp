@@ -1,13 +1,11 @@
-import { useState } from 'react'
-
+import Welcome from "./assets/pages/Welcome.jsx";
 import { Routes, Route} from "react-router";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Routes>
-      <Route></Route>
+        <Route path="/" element={<Welcome/>}></Route>
     </Routes>
   )
 }

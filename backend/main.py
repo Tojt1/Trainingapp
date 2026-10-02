@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import services
-from schemas import Register, Login, AddExercise, WorkoutPlan
+from schemas import Register, Login, AddExercise, WorkoutPlan, Workout
 import exceptions
 
 
@@ -108,3 +108,7 @@ def create_workout_plan(data:WorkoutPlan):
 @app.post("/dashboard")
 def shows_dashboard(jwt):
     return services.dashboard(jwt)
+
+@app.post("/workout")
+def start_workout(jwt, workout_plan:Workout):
+    services.workout(jwt, workout_plan)

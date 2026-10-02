@@ -44,7 +44,7 @@ def download_exercises():
     except Exception as e:
         raise exceptions.GetExercisesError(str(e))
 
-def add_workout(data):
+def add_workout_plan(data):
     try:
         with Session(engine) as session:
             workout = WorkoutPlan(name=data.name, exercises=[
@@ -63,3 +63,10 @@ def get_all_user_workouts(user_id):
     with Session(engine) as session:
         query = sqlalchemy.select(Workouts).where(Workouts.user_id == user_id)
         return session.execute(query).mappings().one_or_none()
+
+def add_workout(user_id, workout_plan, created):
+    with Session(engine) as session:
+        workout = Workouts(user_id=user_id, started=created, workout_plan_id=workout_plan.id)
+
+        session.add(workout)
+        session.commit()

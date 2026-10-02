@@ -1,6 +1,7 @@
 import repository
 import auth
 import exceptions
+import datetime
 
 def valid_email(email):
     if "@" in email and "." in email:
@@ -47,10 +48,13 @@ def get_exercises():
 
 def create_workout(data):
     try:
-        return repository.add_workout(data)
+        return repository.add_workout_plan(data)
     except exceptions.AddWorkoutError as e:
         raise exceptions.AddWorkoutError(str(e))
 
 def dashboard(jwt):
     user = auth.decode_jwt_token(jwt)
     return repository.get_all_user_workouts(user["id"])
+
+def workout(jwt, workout_plan):
+    user = auth.decode_jwt_token(jwt)
