@@ -22,4 +22,4 @@ class WorkoutPlan(BaseModel):
     exercises: list[WorkoutPlanExercises]
 
 class Workout(BaseModel):
-    workout_plan_id: int
+    id: int

@@ -111,4 +111,5 @@ def shows_dashboard(jwt):
 
 @app.post("/workout")
 def start_workout(jwt, workout_plan:Workout):
+    print(workout_plan.id, "tttttt")
     services.workout(jwt, workout_plan)

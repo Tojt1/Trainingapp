@@ -58,3 +58,6 @@ def dashboard(jwt):
 
 def workout(jwt, workout_plan):
     user = auth.decode_jwt_token(jwt)
+    print("user:",user["id"])
+    print("workout_plan", workout_plan.id)
+    repository.add_workout(user["id"], workout_plan, datetime.datetime.now())
