@@ -61,4 +61,10 @@ def get_workout_plan_byid(workout_plan_id):
 
 def dashboard(jwt):
     user = auth.decode_jwt_token(jwt)
-    return repository.get_all_user_workouts(user["id"])
+    workouts = repository.get_all_user_workouts(user["id"])
+    number_workouts = len(workouts)
+    last_workout = get_workout_plan_byid(workouts[number_workouts-1]["Workouts"].workout_plan_id)
+    return {"name":user["name"],
+            "started":workouts[number_workouts-1]["Workouts"].started,
+            "finished":workouts[number_workouts-1]["Workouts"].ended,
+            "workout:":[last_workout]}

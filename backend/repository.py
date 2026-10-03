@@ -1,5 +1,5 @@
 import sqlalchemy
-from sqlalchemy. orm import Session
+from sqlalchemy. orm import Session, selectinload
 from database import engine
 from models import User, Exercise, WorkoutPlan, WorkoutPlanExercise, Workouts
 import exceptions
@@ -66,8 +66,8 @@ def get_all_user_workouts(user_id):
 
 def get_workout_plan_by_id(workout_plan_id):
     with Session(engine) as session:
-        query = sqlalchemy.select(WorkoutPlan).where(WorkoutPlan.id == workout_plan_id)
-        return session.execute(query).one_or_none()
+        query = sqlalchemy.select(WorkoutPlan).options(selectinload(WorkoutPlan.exercises).selectinload(WorkoutPlanExercise.excercise)).where(WorkoutPlan.id == workout_plan_id)
+        return session.execute(query).scalar_one_or_none()
 
 def add_workout(user_id, workout_plan, created):
     with Session(engine) as session:

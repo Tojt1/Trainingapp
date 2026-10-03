@@ -115,5 +115,4 @@ def start_workout(jwt, workout_plan:Workout):
     services.workout(jwt, workout_plan)
 @app.post("/dashboard")
 def shows_dashboard(jwt):
-    workouts =  services.dashboard(jwt)
-    return workouts
+    return services.dashboard(jwt)
