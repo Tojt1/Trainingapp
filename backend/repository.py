@@ -62,7 +62,12 @@ def add_workout_plan(data):
 def get_all_user_workouts(user_id):
     with Session(engine) as session:
         query = sqlalchemy.select(Workouts).where(Workouts.user_id == user_id)
-        return session.execute(query).mappings().one_or_none()
+        return session.execute(query).mappings().all()
+
+def get_workout_plan_by_id(workout_plan_id):
+    with Session(engine) as session:
+        query = sqlalchemy.select(WorkoutPlan).where(WorkoutPlan.id == workout_plan_id)
+        return session.execute(query).one_or_none()
 
 def add_workout(user_id, workout_plan, created):
     with Session(engine) as session:

@@ -105,11 +105,15 @@ def create_workout_plan(data:WorkoutPlan):
             status_code=400,
             detail=str(e)
         )
-@app.post("/dashboard")
-def shows_dashboard(jwt):
-    return services.dashboard(jwt)
+@app.get("/workoutplan/{id}")
+def get_workout_plan(workout_plan_id):
+    return services.get_workout_plan_byid(workout_plan_id)
 
 @app.post("/workout")
 def start_workout(jwt, workout_plan:Workout):
     print(workout_plan.id, "tttttt")
     services.workout(jwt, workout_plan)
+@app.post("/dashboard")
+def shows_dashboard(jwt):
+    workouts =  services.dashboard(jwt)
+    return workouts
