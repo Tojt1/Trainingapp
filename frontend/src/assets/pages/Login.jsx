@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./Login.css"
 
 function Login (){
     const [email, setEmail] = useState("")
@@ -7,25 +8,27 @@ function Login (){
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log("kliknięto")
+        console.log(email)
+        console.log(password)
     }
 
     return(
         <div className="login-container">
             <h1>Zaloguj się:</h1>
-            <form "login-form">
+            <form className="login-form" onSubmit={handleSubmit}>
                 <input className="login-email"
                        type="email"
                        placeholder="Twój email...."
                        value={email}
                        onChange={(e)=> setEmail(e.target.value)}
                 />
-                <input className="login-email"
+                <input className="login-password"
                        type="password"
                        placeholder="Hasło...."
                        value={password}
                        onChange={(e)=> setPassword(e.target.value)}
                 />
-                <button className="login-bttn" type="submit"><strong>Zaloguj</strong></button>
+                <button className="login-btn" type="submit"><strong>Zaloguj</strong></button>
             </form>
         </div>
     )
