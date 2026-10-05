@@ -119,6 +119,6 @@ def get_workout_plan(workout_plan_id):
 def start_workout(jwt, workout_plan:Workout):
     print(workout_plan.id, "tttttt")
     services.workout(jwt, workout_plan)
-@app.post("/dashboard")
+@app.get("/dashboard")
 def shows_dashboard(jwt):
     return services.dashboard(jwt)
