@@ -9,7 +9,8 @@ def sign_up(user_inf, password):
         with Session(engine) as session:
             user = User(name=user_inf.name,
                         email=user_inf.email,
-                        password=password)
+                        password=password,
+                        age=user_inf.age)
 
             session.add(user)
             session.commit()

@@ -7,10 +7,32 @@ function Register () {
     const [email, setEmail] = useState("")
     const[password, setPassword] = useState("")
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        const response = await fetch("http://localhost:8000/register", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                name:name,
+                age:age,
+                email:email,
+                password:password
+            })
+        })
+
+        if (response.ok){
+            alert("pomyślnie utworzono konto")
+        }
+
+    }
+
     return(
         <div className="register-container">
             <h1>Register</h1>
-            <form className="register-form">
+            <form className="register-form" onSubmit={handleSubmit}>
 
                 <label className="form-label">Imie:</label>
                 <input className="input-str"
