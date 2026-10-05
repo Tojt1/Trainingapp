@@ -20,18 +20,24 @@
     gap: 12px;
 }
 
-.login-email{
+.form-label{
+    color: white;
+    font-size: 20px;
+}
+
+.input-str{
     width:300px;
     font-size:14px;
 
-    border: none;
+    border: 1px solid grey;
     border-radius: 10px;
     color: #a5a5a5;
 
     padding-bottom: 3px;
     padding-top:3px
+
 }
-.login-email:focus{
+.input-str:focus{
     background-color: black;
     color: white;
 }
@@ -53,7 +59,7 @@
     color: white;
 }
 
-.login-btn{
+.form-btn{
     background-color:dodgerblue;
     color: white;
     font-size: 14px;

@@ -1,0 +1,27 @@
+.register-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.register-container h1{
+    color: white;
+    padding-bottom: 50px;
+    font-size: 65px;
+}
+.register-form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-age{
+    width: 50px;
+    font-size: 15px;
+
+    border: 1px solid grey;
+    border-radius: 10px;
+}
