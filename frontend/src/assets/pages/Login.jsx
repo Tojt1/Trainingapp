@@ -7,9 +7,21 @@ function Login (){
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        const response = await fetch("http://localhost:8000/login", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+              email:email,
+              password:password
+            })
+        })
+        let data = await response.json()
+
         console.log("kliknięto")
-        console.log(email)
-        console.log(password)
+        console.log(data)
     }
 
     return(
@@ -33,8 +45,7 @@ function Login (){
                        value={password}
                        onChange={(e)=> setPassword(e.target.value)}
                 />
-
-                <button className="form-btn" type="submit"><strong>Zaloguj</strong></button>
+                <button className="form-btn" type="submit">Zaloguj</button>
 
             </form>
         </div>
