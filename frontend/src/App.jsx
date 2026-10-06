@@ -3,6 +3,7 @@ import Welcome from "./assets/pages/Welcome.jsx";
 import Login from "./assets/pages/Login.jsx";
 import Register from "./assets/pages/Register.jsx";
 import Dashboard from "./assets/pages/Dashboard.jsx";
+import CheckLogged from "./assets/components/CheckLogged.jsx";
 
 function App() {
 
@@ -11,7 +12,9 @@ function App() {
         <Route path="/" element={<Welcome/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
+        <Route element={<CheckLogged />}>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+        </Route>
     </Routes>
   )
 }
