@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
-import services
 from schemas import Register, Login, AddExercise, WorkoutPlan, Workout
+from authorization import oauth2
+import services
 import exceptions
 
 
@@ -120,5 +121,7 @@ def start_workout(jwt, workout_plan:Workout):
     print(workout_plan.id, "tttttt")
     services.workout(jwt, workout_plan)
 @app.get("/dashboard")
-def shows_dashboard(jwt):
-    return services.dashboard(jwt)
+def shows_dashboard(jwt = Depends(oauth2)):
+    result = services.dashboard(jwt)
+    print(result)
+    return result
