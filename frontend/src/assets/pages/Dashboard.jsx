@@ -1,27 +1,22 @@
 import { useEffect, useState } from "react"
 
 function Dashboard() {
-
-    const [data, setData] = useState([])
+    const [workouts, setworkouts] = useState([])
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
         const getData = async () => {
+
             const response = await fetch("http://localhost:8000/dashboard", {
                 headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({
-                    jwt:localStorage.getItem("token")
-                })
+                    "Authorization":`Bearer ${token}`
+                }
             })
             let data = await response.json()
-            setData(data)
+            setworkouts(data)
         }
         getData();
     }, []);
-
-    console.log(data)
-
     return(
         <>
             <h1>Dashboard page</h1>
