@@ -67,4 +67,4 @@ def dashboard(jwt):
     return {"name":user["name"],
             "started":workouts[number_workouts-1]["Workouts"].started,
             "finished":workouts[number_workouts-1]["Workouts"].ended,
-            "workout:":[last_workout]}
+            "workout":[last_workout]}

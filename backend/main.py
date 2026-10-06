@@ -123,5 +123,4 @@ def start_workout(jwt, workout_plan:Workout):
 @app.get("/dashboard")
 def shows_dashboard(jwt = Depends(oauth2)):
     result = services.dashboard(jwt)
-    print(result)
     return result
