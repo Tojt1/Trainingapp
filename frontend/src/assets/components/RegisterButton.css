@@ -1,0 +1,19 @@
+.register-btn{
+    position: absolute;
+    right: 135px;
+    top: 10px;
+
+    background-color: dodgerblue;
+    color: white;
+    font-size: 14px;
+    width: 120px;
+    border: 1px black solid;
+    border-radius: 14px;
+
+    cursor: pointer;
+}
+
+.register-btn:hover{
+    background-color: #007df3;
+    transform: translateY(0.2px);
+}

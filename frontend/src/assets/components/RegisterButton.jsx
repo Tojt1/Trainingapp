@@ -1,4 +1,6 @@
-import { useNavigate, Outlet} from "react-router"
+import { useNavigate} from "react-router"
+import "./RegisterButton.css"
+
 function RegisterButton (){
     const navigate = useNavigate()
 
