@@ -6,7 +6,6 @@ function LoginButton (){
     return(
         <>
             <button className="login-btn" onClick={navigate("/login")}>Zaloguj się</button>
-            <Outlet />
         </>
     )
 }

@@ -5,7 +5,6 @@ function RegisterButton (){
     return(
         <>
             <button className="register-btn" onClick={navigate("/register")}>Zarejestruj się</button>
-            <Outlet />
         </>
     )
 }
