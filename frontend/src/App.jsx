@@ -5,6 +5,7 @@ import Register from "./assets/pages/Register.jsx";
 import Dashboard from "./assets/pages/Dashboard.jsx";
 import CheckLogged from "./assets/components/CheckLogged.jsx";
 import ButtonLayouts from "./assets/components/ButtonLayouts.jsx";
+import BottomNav from "./assets/components/BottomNav.jsx";
 
 function App() {
 
@@ -16,7 +17,9 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route element={<CheckLogged />}>
-            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route element={<BottomNav/>}>
+                <Route path="/dashboard" element={<Dashboard />}></Route>
+            </Route>
         </Route>
     </Routes>
   )
