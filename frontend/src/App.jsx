@@ -5,12 +5,13 @@ import Register from "./assets/pages/Register.jsx";
 import Dashboard from "./assets/pages/Dashboard.jsx";
 import CheckLogged from "./assets/components/CheckLogged.jsx";
 import LoginButton from "./assets/components/LoginButton.jsx";
+import RegisterButton from "./assets/components/RegisterButton.jsx";
 
 function App() {
 
   return (
     <Routes>
-        <Route element={<LoginButton />}>
+        <Route element={<><LoginButton/><RegisterButton /> </>}>
             <Route path="/" element={<Welcome/>}></Route>
         </Route>
         <Route path="/login" element={<Login/>}></Route>
