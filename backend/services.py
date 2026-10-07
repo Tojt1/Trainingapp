@@ -65,6 +65,7 @@ def dashboard(jwt   ):
     number_workouts = len(workouts)
     last_workout = get_workout_plan_byid(workouts[number_workouts-1]["Workouts"].workout_plan_id)
     return {"name":user["name"],
+            "number_workouts":number_workouts,
             "started":workouts[number_workouts-1]["Workouts"].started,
             "finished":workouts[number_workouts-1]["Workouts"].ended,
             "workout":[last_workout]}
