@@ -1,4 +1,5 @@
-import { useNavigate, Outlet} from "react-router"
+import { useNavigate} from "react-router"
+import "./LoginButton.css"
 
 function LoginButton (){
     const navigate = useNavigate()
