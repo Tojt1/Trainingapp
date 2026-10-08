@@ -28,6 +28,11 @@ def login_user(email):
         query = sqlalchemy.select(User.id, User.name).where(User.email == email)
         return session.execute(query).mappings().one_or_none()
 
+def get_user_inf(user_id):
+    with Session(engine) as session:
+        query = sqlalchemy.select(User).where(User.id == user_id)
+        return session.execute(query).mappings().one_or_none()
+
 def create_exercise(exercise_name):
     try:
         with Session(engine) as session:

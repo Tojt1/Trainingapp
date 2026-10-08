@@ -68,6 +68,10 @@ def login_user(user:Login):
             detail=str(e)
         )
 
+@app.get("/settings")
+def get_user_settings(jwt= Depends(oauth2)):
+    return services.user_settings(jwt)
+
 @app.post("/exercises")
 def add_new_exercise(exercise:AddExercise):
     try:

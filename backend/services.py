@@ -34,6 +34,10 @@ def login(user):
     except Exception as e:
         raise Exception(str(e))
 
+def user_settings(jwt):
+    user = auth.decode_jwt_token(jwt)
+    return repository.get_user_inf(user["id"])
+
 def add_exercise(exercise):
     try:
         repository.create_exercise(exercise.name)
