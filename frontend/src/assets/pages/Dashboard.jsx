@@ -55,6 +55,7 @@ function Dashboard() {
                     </div>
                 </div>
             ))}
+            <p>Trening: {workout.number_workouts}</p>
         </div>
     )
 }

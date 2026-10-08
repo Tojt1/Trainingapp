@@ -19,6 +19,13 @@
 }
 
 
+.workout-card > p {
+    margin: 0 0 25px;
+
+    font-size: 10px;
+    color: #000000;
+}
+
 
 .plan {
     padding: 20px;

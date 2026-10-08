@@ -59,7 +59,7 @@ def workout(jwt, workout_plan):
 def get_workout_plan_byid(workout_plan_id):
     return repository.get_workout_plan_by_id(workout_plan_id)
 
-def dashboard(jwt   ):
+def dashboard(jwt):
     user = auth.decode_jwt_token(jwt)
     workouts = repository.get_all_user_workouts(user["id"])
     number_workouts = len(workouts)
