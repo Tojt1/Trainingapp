@@ -1,0 +1,74 @@
+.profil-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 32px;
+    background: #181c24;
+    color: #f4f6f8;
+    border: 1px solid #2b313d;
+    border-radius: 20px;
+    font-family: "Inter", "Segoe UI", sans-serif;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+.profil-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #303642;
+}
+
+
+.profil-header p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    margin: 0;
+    border: 2px dashed #5cda78;
+    border-radius: 50%;
+    background: #222b2a;
+    color: #5cda78;
+    font-size: 12px;
+    text-align: center;
+}
+
+.profil-header h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+
+.user-inf {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 28px;
+}
+
+.user-inf span {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 20px;
+    background: #222733;
+    border: 1px solid #303746;
+    border-radius: 12px;
+    color: #aab3c2;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.user-inf span:hover {
+    border-color: #5cda78;
+    transform: translateY(-2px);
+}

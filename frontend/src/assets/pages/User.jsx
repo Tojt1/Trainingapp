@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import "./User.css"
 
 function User(){
     const [userinf, setUserinf] = useState("")
@@ -21,9 +22,18 @@ function User(){
 
     return(
         <div className="profil-container">
-            <div className="profil-header"></div>
-            <h1>User</h1>
-            {userinf.name}
+            <div className="profil-header">
+                <h1> {userinf.name} </h1>
+                <p> image in the future</p>
+            </div>
+            <div className="user-inf">
+                <span>
+                    email: {userinf.email}
+                </span>
+                <span>
+                    created: {userinf.created}
+                </span>
+            </div>
         </div>
     )
 }
