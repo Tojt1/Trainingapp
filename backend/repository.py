@@ -31,7 +31,7 @@ def login_user(email):
 def get_user_inf(user_id):
     with Session(engine) as session:
         query = sqlalchemy.select(User).where(User.id == user_id)
-        return session.execute(query).mappings().one_or_none()
+        return session.execute(query).scalar_one_or_none()
 
 def create_exercise(exercise_name):
     try:

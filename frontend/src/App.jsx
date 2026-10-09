@@ -6,6 +6,7 @@ import Dashboard from "./assets/pages/Dashboard.jsx";
 import CheckLogged from "./assets/components/CheckLogged.jsx";
 import ButtonLayouts from "./assets/components/ButtonLayouts.jsx";
 import BottomNav from "./assets/components/BottomNav.jsx";
+import User from "./assets/pages/User.jsx";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route element={<CheckLogged />}>
             <Route element={<BottomNav/>}>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/profile" element={<User />} />
             </Route>
         </Route>
     </Routes>
