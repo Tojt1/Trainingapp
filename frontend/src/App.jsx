@@ -7,6 +7,7 @@ import CheckLogged from "./assets/components/CheckLogged.jsx";
 import ButtonLayouts from "./assets/components/ButtonLayouts.jsx";
 import BottomNav from "./assets/components/BottomNav.jsx";
 import User from "./assets/pages/User.jsx";
+import Workouts from "./assets/pages/Workouts.jsx";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route element={<BottomNav/>}>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/profile" element={<User />} />
+                <Route path="/workouts" element={<Workouts />} />
             </Route>
         </Route>
     </Routes>

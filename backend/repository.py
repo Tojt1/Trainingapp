@@ -70,9 +70,9 @@ def get_all_user_workouts(user_id):
         query = sqlalchemy.select(Workouts).where(Workouts.user_id == user_id)
         return session.execute(query).mappings().all()
 
-def get_all_workouts(user_id):
+def get_all_planworkouts(user_id):
     with Session(engine) as session:
-        query = sqlalchemy.select(WorkoutPlan).join(WorkoutPlan.workouts).where(Workouts.user_id==user_id)
+        query = sqlalchemy.select(WorkoutPlan).join(WorkoutPlan.workouts).options(selectinload(WorkoutPlan.exercises).selectinload(WorkoutPlanExercise.excercise)).where(Workouts.user_id==user_id)
         return session.scalars(query).all()
 
 def get_workout_plan_by_id(workout_plan_id):
