@@ -60,6 +60,12 @@ def workout(jwt, workout_plan):
     user = auth.decode_jwt_token(jwt)
     repository.add_workout(user["id"], workout_plan, datetime.datetime.now())
 
+def get_all_workouts(jwt):
+    user = auth.decode_jwt_token(jwt)
+    result = repository.get_all_user_workouts(user["id"])
+    print(result)
+    return result
+
 def get_workout_plan_byid(workout_plan_id):
     return repository.get_workout_plan_by_id(workout_plan_id)
 

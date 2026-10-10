@@ -8,6 +8,7 @@ function BottomNav(){
         <>
             <nav className="bottom-nav">
                 <button onClick={() => navigate("/profile")}>🧑‍💼</button>
+                <button onClick={() => navigate("/workouts")}>workouts</button>
             </nav>
             <Outlet />
         </>

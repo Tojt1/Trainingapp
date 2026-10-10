@@ -116,6 +116,10 @@ def create_workout_plan(data:WorkoutPlan):
             status_code=400,
             detail=str(e)
         )
+@app.get("/workoutplan")
+def get_workouts_plans(jwt = Depends(oauth2)):
+    return services.get_all_workouts(jwt)
+
 @app.get("/workoutplan/{id}")
 def get_workout_plan(workout_plan_id):
     return services.get_workout_plan_byid(workout_plan_id)
