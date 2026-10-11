@@ -20,9 +20,16 @@ function Workouts(){
     console.log(workouts)
 
     return(
-        <>
-            <h1>Workout page</h1>
-        </>
+        <div className="workouts-container">
+            <h1>Workouts</h1>
+            <button>Utwórz nowy</button>
+
+            {workouts.map((workout) => (
+                <div className="training-card" key={workout.id}>
+                    {workout.name}w
+                </div>
+            ))}
+        </div>
     )
 }
 export default Workouts
