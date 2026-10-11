@@ -1,8 +1,10 @@
 import { useState, useEffect} from "react"
+import CreateWorkouts from "../components/CreateWorkouts.jsx";
 import "./Workouts.css"
 
 function Workouts(){
     const [workouts, setWorkouts] = useState([])
+    const [open, setOpen] = useState(false)
     const token = localStorage.getItem("token")
 
     useEffect(() => {
@@ -23,13 +25,18 @@ function Workouts(){
     return(
         <div className="workouts-container">
             <h1>Workouts</h1>
-            <button>Utwórz nowy</button>
+            <button onClick={() => setOpen(true)}>Utwórz nowy</button>
+
+            {open &&(
+                <CreateWorkouts onClose={() => setOpen(false)} />
+            )}
 
             {workouts.map((workout) => (
                 <div className="training-card" key={workout.id}>
-                    {workout.name}w
+                    {workout.name}
                 </div>
             ))}
+            <CreateWorkouts />
         </div>
     )
 }
