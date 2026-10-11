@@ -1,4 +1,5 @@
 import { useState, useEffect} from "react"
+import "./Workouts.css"
 
 function Workouts(){
     const [workouts, setWorkouts] = useState([])
