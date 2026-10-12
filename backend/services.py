@@ -40,7 +40,7 @@ def user_settings(jwt):
 
 def add_exercise(exercise):
     try:
-        repository.create_exercise(exercise.name)
+        repository.create_exercise(exercise.exercises)
     except Exception as e:
         raise exceptions.CreateExerciseError(str(e))
 

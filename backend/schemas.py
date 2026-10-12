@@ -11,7 +11,7 @@ class Login(BaseModel):
     password:str
 
 class AddExercise(BaseModel):
-    name:str
+    exercises:str
 
 class WorkoutPlanExercises(BaseModel):
     exercise_id:int

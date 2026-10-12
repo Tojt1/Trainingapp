@@ -75,7 +75,7 @@ def get_user_settings(jwt= Depends(oauth2)):
 @app.post("/exercises")
 def add_new_exercise(exercise:AddExercise):
     try:
-        return {"information": "pomyslnie utworzono"}
+        return services.add_exercise(exercise)
     except exceptions.CreateExerciseError as e:
         raise HTTPException(
             status_code=400,
