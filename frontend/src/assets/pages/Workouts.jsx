@@ -36,7 +36,6 @@ function Workouts(){
                     {workout.name}
                 </div>
             ))}
-            <CreateWorkouts />
         </div>
     )
 }
