@@ -18,7 +18,7 @@
 }
 
 
-.cworkout-som {
+.select-workout {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -51,7 +51,7 @@
 }
 
 
-.exercise-btn {
+.exercise-select {
     width: 100%;
     display: flex;
     align-items: center;
@@ -76,34 +76,13 @@
         color 0.2s ease;
 }
 
-.exercise-btn:hover {
+.exercise-select {
     background: #2b2546;
     border-color: #8b5cf6;
     color: #ffffff;
     transform: translateY(-2px);
 }
 
-.exercise-btn:active {
-    transform: scale(0.99);
-}
-
-.exercise-btn:focus-visible {
-    outline: 2px solid #a78bfa;
-    outline-offset: 3px;
-}
-
-.cworkout-som::-webkit-scrollbar {
-    width: 7px;
-}
-
-.cworkout-som::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.cworkout-som::-webkit-scrollbar-thumb {
-    background: #414458;
-    border-radius: 10px;
-}
 
 
 @keyframes fadeIn {
@@ -126,4 +105,4 @@
         opacity: 1;
         transform: translateY(0) scale(1);
     }
-}  }
+}

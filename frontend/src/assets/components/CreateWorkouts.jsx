@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import "./CreateWorkouts.css"
 
 function CreateWorkouts( {onClose} ){
     const [exercises, setExercises] = useState([])
@@ -14,11 +15,6 @@ function CreateWorkouts( {onClose} ){
         getExercises();
     }, []);
 
-    const handlePress = ( exercise ) => {
-        setChosen((old) => [old, exercise])
-        console.log(chosen)
-    }
-
     return(
         <div className="cworkout-container">
             <div className="cworkout-background" onClick={onClose}></div>
@@ -33,7 +29,9 @@ function CreateWorkouts( {onClose} ){
                             {exercises.map((exercise) => (
                                 <option key={exercise.id} value={exercise.name}>{exercise.name}</option>
                             ))}
-                </select>
+                        </select>
+                        <input type="text" placeholder="KG" value="" />
+                        <input type="text" placeholder="reps" value="" />
                     </div>
                 ))}
             </div>
