@@ -68,7 +68,6 @@ function CreateWorkouts( {onClose} ){
             <div className="workout-front">
                 <input type="text" placeholder="Nazwa..." value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
                 <p className="error-name">{errorName}</p>
-                <div className="workout-front">
                     {[...chosen, ...(chosen.length===0 ?[{exercises_id:"", kg:"" ,rep:""}] :[])].map((item,index)=> (
                         <div key={index}>
                             <select id="exercise-select"
@@ -85,7 +84,6 @@ function CreateWorkouts( {onClose} ){
                         </div>
                     ))}
                     <button className="workout-submit" onClick={handleSubmit}>Zapisz</button>
-                </div>
             </div>
         </div>
     )
