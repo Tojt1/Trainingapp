@@ -4,6 +4,7 @@ import "./CreateWorkouts.css"
 function CreateWorkouts( {onClose} ){
     const [exercises, setExercises] = useState([])
     const [workoutName, setWorkoutName] = useState("")
+    const [errorName, setErrorName] = useState("")
     const [chosen, setChosen] = useState([{exercises_id:"", kg:"", rep:""}])
 
     useEffect(() => {
@@ -32,7 +33,11 @@ function CreateWorkouts( {onClose} ){
     }
 
     const handleSubmit = async () => {
-        console.log(chosen)
+        if (workoutName.trim() === ""){
+            setErrorName("Nazwa treningu jest wymagana")
+            return
+        }
+
         const response = await fetch("http://localhost:8000/workoutplan", {
             method: "POST",
             headers:{
@@ -62,6 +67,7 @@ function CreateWorkouts( {onClose} ){
             <div className="cworkout-background" onClick={onClose}></div>
             <div className="workout-front">
                 <input type="text" placeholder="Nazwa..." value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
+                <p className="error-name">{errorName}</p>
                 <div className="workout-front">
                     {[...chosen, ...(chosen.length===0 ?[{exercises_id:"", kg:"" ,rep:""}] :[])].map((item,index)=> (
                         <div key={index}>
@@ -69,7 +75,7 @@ function CreateWorkouts( {onClose} ){
                                     value={item.exercises_id}
                                     onChange={(e) => handleExerciseChange(index, e.target.value)}>
 
-                                <option>Wybierz ćwiczenie</option>
+                                <option value="">Wybierz ćwiczenie</option>
                                 {exercises.map((exercise) => (
                                     <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
                                 ))}
