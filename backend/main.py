@@ -126,7 +126,6 @@ def get_workout_plan(workout_plan_id):
 
 @app.post("/workout")
 def start_workout(jwt, workout_plan:Workout):
-    print(workout_plan.id, "tttttt")
     services.workout(jwt, workout_plan)
 @app.get("/dashboard")
 def shows_dashboard(jwt = Depends(oauth2)):

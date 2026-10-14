@@ -3,7 +3,8 @@ import "./CreateWorkouts.css"
 
 function CreateWorkouts( {onClose} ){
     const [exercises, setExercises] = useState([])
-    const [chosen, setChosen] = useState([{exercises:"", kg:"", rep:""}])
+    const [workoutName, setWorkoutName] = useState("")
+    const [chosen, setChosen] = useState([{exercises_id:"", kg:"", rep:""}])
 
     useEffect(() => {
         const getExercises = async () => {
@@ -14,21 +15,41 @@ function CreateWorkouts( {onClose} ){
         getExercises();
     }, []);
 
-    const HandleExerciseChange = (index, name) => {
+    const handleExerciseChange = (index, exercise_id) => {
         setChosen((old) => old.map((item, i) => i === index
-            ? {...item, exercises:name}
+            ? {...item, exercises_id:exercise_id}
             : item
         ))
 
         if(index === chosen.length-1){
             setChosen((old) => [
                 ...old, {
-                exercises:"", kg:'', rep:""
+                exercises_id:"", kg:'', rep:""
                 }
             ])
 
         }
     }
+
+    const handleSubmit = async () => {
+        console.log(chosen)
+        const response = await fetch("http://localhost:8000/workoutplan", {
+            method: "POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify({
+                name: workoutName,
+                exercises: chosen.filter((item) => item.exercises_id !== "").map((item) => ({
+                    exercise_id: Number(item.exercises_id),
+                    weight: Number(item.kg),
+                    reps: Number(item.rep)}))
+            })
+            })
+        if (response.ok){
+            console.log("Pomyślnie utworzono workoutplan")
+        }
+        }
 
     const handleChange = (index, field, value) => {
         setChosen((old) => old.map((item, i) => i===index
@@ -39,22 +60,26 @@ function CreateWorkouts( {onClose} ){
     return(
         <div className="cworkout-container">
             <div className="cworkout-background" onClick={onClose}></div>
-            <div className="select-workout">
-                {[...chosen, ...(chosen.length===0 ?[{exercises:"", kg:"" ,rep:""}] :[])].map((item,index)=> (
-                    <div key={index}>
-                        <select id="exercise-select"
-                                value={item.exercises}
-                                onChange={(e) => HandleExerciseChange(index, e.target.value)}>
+            <div className="workout-front">
+                <input type="text" placeholder="Nazwa..." value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
+                <div className="workout-front">
+                    {[...chosen, ...(chosen.length===0 ?[{exercises_id:"", kg:"" ,rep:""}] :[])].map((item,index)=> (
+                        <div key={index}>
+                            <select id="exercise-select"
+                                    value={item.exercises_id}
+                                    onChange={(e) => handleExerciseChange(index, e.target.value)}>
 
-                            <option>Wybierz ćwiczenie</option>
-                            {exercises.map((exercise) => (
-                                <option key={exercise.id} value={exercise.name}>{exercise.name}</option>
-                            ))}
-                        </select>
-                        <input type="number" placeholder="KG" value={item.kg} onChange={(e) => handleChange(index, "kg", e.target.value)}/>
-                        <input type="number" placeholder="reps" value={item.rep} onChange={(e) =>  handleChange(index, "rep", e.target.value)}/>
-                    </div>
-                ))}
+                                <option>Wybierz ćwiczenie</option>
+                                {exercises.map((exercise) => (
+                                    <option key={exercise.id} value={exercise.id}>{exercise.name}</option>
+                                ))}
+                            </select>
+                            <input type="number" placeholder="KG" value={item.kg} onChange={(e) => handleChange(index, "kg", e.target.value)}/>
+                            <input type="number" placeholder="reps" value={item.rep} onChange={(e) =>  handleChange(index, "rep", e.target.value)}/>
+                        </div>
+                    ))}
+                    <button className="workout-submit" onClick={handleSubmit}>Zapisz</button>
+                </div>
             </div>
         </div>
     )
