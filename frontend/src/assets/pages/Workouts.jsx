@@ -1,4 +1,5 @@
 import { useState, useEffect} from "react"
+import { useNavigate } from "react-router"
 import CreateWorkouts from "../components/CreateWorkouts.jsx";
 import "./Workouts.css"
 
@@ -6,6 +7,7 @@ function Workouts(){
     const [workouts, setWorkouts] = useState([])
     const [open, setOpen] = useState(false)
     const token = localStorage.getItem("token")
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getWorkouts = async () => {
@@ -32,7 +34,8 @@ function Workouts(){
             )}
 
             {workouts.map((workout) => (
-                <div className="training-card" key={workout.id}>
+                <div className="training-card" key={workout.id} onClick={}>
+                    <button></button>
                     {workout.name}
                 </div>
             ))}

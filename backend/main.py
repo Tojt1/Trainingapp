@@ -70,7 +70,18 @@ def login_user(user:Login):
 
 @app.get("/settings")
 def get_user_settings(jwt= Depends(oauth2)):
-    return services.user_settings(jwt)
+    try:
+        return services.user_settings(jwt)
+    except exceptions.UserSettingsError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
 
 @app.post("/exercises")
 def add_new_exercise(exercise:AddExercise):

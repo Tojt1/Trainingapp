@@ -20,3 +20,5 @@ class GetExercisesError(Exception):
     pass
 class AddWorkoutError(Exception):
     pass
+class UserSettingsError(Exception):
+    pass
