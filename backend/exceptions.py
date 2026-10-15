@@ -26,3 +26,7 @@ class GetWorkoutsError(Exception):
     pass
 class DbGetWorkoutPlanError(Exception):
     pass
+class StartWorkoutError(Exception):
+    pass
+class DbAddWorkoutError(Exception):
+    pass

@@ -60,8 +60,11 @@ def create_workout(data):
         raise exceptions.AddWorkoutError(str(e))
 
 def workout(jwt, workout_plan):
-    user = auth.decode_jwt_token(jwt)
-    repository.add_workout(user["id"], workout_plan, datetime.datetime.now())
+    try:
+        user = auth.decode_jwt_token(jwt)
+        repository.add_workout(user["id"], workout_plan, datetime.datetime.now())
+    except Exception as e:
+        raise exceptions.StartWorkoutError(str(e))
 
 def get_all_workouts(jwt):
     try:

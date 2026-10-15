@@ -84,8 +84,12 @@ def get_workout_plan_by_id(workout_plan_id):
         return session.execute(query).scalar_one_or_none()
 
 def add_workout(user_id, workout_plan, created):
-    with Session(engine) as session:
-        workout = Workouts(user_id=user_id, started=created, workout_plan_id=workout_plan.id)
+    try:
+        with Session(engine) as session:
+            workout = Workouts(user_id=user_id, started=created, workout_plan_id=workout_plan.id)
 
-        session.add(workout)
-        session.commit()
+            session.add(workout)
+            session.commit()
+    except Exception as e:
+        session.rollback()
+        raise exceptions.AddWorkoutError(str(e))

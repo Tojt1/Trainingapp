@@ -148,7 +148,22 @@ def get_workout_plan(workout_plan_id):
 
 @app.post("/workout")
 def start_workout(jwt, workout_plan:Workout):
-    services.workout(jwt, workout_plan)
+    try:
+        services.workout(jwt, workout_plan)
+    except exceptions.AddWorkoutError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.StartWorkoutError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except Exception as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e))
 @app.get("/dashboard")
 def shows_dashboard(jwt = Depends(oauth2)):
     result = services.dashboard(jwt)
