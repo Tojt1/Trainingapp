@@ -22,3 +22,7 @@ class AddWorkoutError(Exception):
     pass
 class UserSettingsError(Exception):
     pass
+class GetWorkoutsError(Exception):
+    pass
+class DbGetWorkoutPlanError(Exception):
+    pass

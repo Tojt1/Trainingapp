@@ -129,7 +129,18 @@ def create_workout_plan(data:WorkoutPlan):
         )
 @app.get("/workoutplan")
 def get_workouts_plans(jwt = Depends(oauth2)):
-    return services.get_all_workouts(jwt)
+    try:
+        return services.get_all_workouts(jwt)
+    except exceptions.JwtDecodeError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
+    except exceptions.GetWorkoutsError as e:
+        raise HTTPException(
+            status_code=400,
+            detail=str(e)
+        )
 
 @app.get("/workoutplan/{id}")
 def get_workout_plan(workout_plan_id):
