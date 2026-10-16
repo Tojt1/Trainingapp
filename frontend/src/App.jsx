@@ -8,6 +8,7 @@ import ButtonLayouts from "./assets/components/ButtonLayouts.jsx";
 import BottomNav from "./assets/components/BottomNav.jsx";
 import User from "./assets/pages/User.jsx";
 import Workouts from "./assets/pages/Workouts.jsx";
+import Workout from "./assets/pages/Workout.jsx";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/profile" element={<User />} />
                 <Route path="/workouts" element={<Workouts />} />
+                <Route path="/workouts/:user_id/:workout_plan_id" element={<Workout />}/>
             </Route>
         </Route>
     </Routes>

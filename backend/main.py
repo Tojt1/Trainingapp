@@ -142,8 +142,8 @@ def get_workouts_plans(jwt = Depends(oauth2)):
             detail=str(e)
         )
 
-@app.get("/workoutplan/{id}")
-def get_workout_plan(workout_plan_id):
+@app.get("/workoutplan/{user_id}/{workout_plan_id}")
+def get_workout_plan(user_id,workout_plan_id, jwt=Depends(oauth2)):
     return services.get_workout_plan_byid(workout_plan_id)
 
 @app.post("/workout")
