@@ -1,5 +1,6 @@
 import { useState, useEffect} from "react"
 import { useNavigate } from "react-router"
+import { jwtDecode } from "jwt-decode"
 import CreateWorkouts from "../components/CreateWorkouts.jsx";
 import "./Workouts.css"
 
@@ -8,6 +9,7 @@ function Workouts(){
     const [open, setOpen] = useState(false)
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
+    const user = jwtDecode(token)
 
     useEffect(() => {
         const getWorkouts = async () => {
@@ -34,10 +36,12 @@ function Workouts(){
             )}
 
             {workouts.map((workout) => (
-                <div className="training-card" key={workout.id} onClick={}>
-                    <button></button>
+                <>
+                {console.log(workout.id)}
+                <div className="training-card" key={workout.id} onClick={() => navigate(`/workouts/${user["id"]}/${workout.id}`)}>
                     {workout.name}
                 </div>
+                </>
             ))}
         </div>
     )

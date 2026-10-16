@@ -4,7 +4,7 @@ import { useParams } from "react-router"
 function Workout(){
     const [workout, setWorkout ] = useState([])
     const { user_id } = useParams()
-    const { workout_plan_id } = useParams
+    const { workout_plan_id } = useParams()
     const token = localStorage.getItem("token")
 
     useEffect(() => {
@@ -21,7 +21,6 @@ function Workout(){
         getWorkout_plan();
     }, []);
 
-    console.log(workout)
 }
 
 export default Workout
