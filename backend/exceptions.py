@@ -30,3 +30,5 @@ class StartWorkoutError(Exception):
     pass
 class DbAddWorkoutError(Exception):
     pass
+class InvalidUserError(Exception):
+    pass
