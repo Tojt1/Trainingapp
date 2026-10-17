@@ -54,7 +54,7 @@ class WorkoutPlan(Base):
     )
 
     user:Mapped["User"] = relationship(
-        back_populates="workout_plan"
+        back_populates="workout_plans"
     )
     name: Mapped[str] = mapped_column(String)
     exercises: Mapped[list["WorkoutPlanExercise"]] = relationship(

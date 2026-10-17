@@ -78,7 +78,7 @@ def get_workout_plan_byid(workout_plan_id, user_id, jwt):
     user = auth.decode_jwt_token(jwt)
     if user["id"] != user_id:
         raise exceptions.InvalidUserError("Id użytkownika nie zgadza się")
-    return repository.get_workout_plan_by_id(workout_plan_id)
+    return repository.get_workout_plan_by_id(workout_plan_id, user["id"])
 
 def dashboard(jwt):
     user = auth.decode_jwt_token(jwt)

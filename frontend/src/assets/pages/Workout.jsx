@@ -3,7 +3,7 @@ import { useParams } from "react-router"
 import workouts from "./Workouts.jsx";
 
 function Workout(){
-    const [workout, setWorkout ] = useState([])
+    const [workout, setWorkout ] = useState(null)
     const { user_id } = useParams()
     const { workout_plan_id } = useParams()
     const token = localStorage.getItem("token")
@@ -22,10 +22,18 @@ function Workout(){
         getWorkout_plan();
     }, []);
 
-    console.log(workout)
+    if (!workout){
+        return <p>ładowanie ćwiczeń....</p>
+    }
+    console.log(workout.exercises);
     return(
-        <div>
+        <div className="workout-container">
             <h1>{workout.name}</h1>
+            {workout.exercises.map((exercise) =>(
+                <div key={exercise.id}>
+                    <h2>{exercise.excercise.name}</h2>
+                </div>
+                ))}
         </div>
     )
 }

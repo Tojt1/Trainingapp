@@ -78,9 +78,9 @@ def get_all_planworkouts(user_id):
     except Exception as e:
         raise exceptions.DbGetWorkoutPlanError(str(e))
 
-def get_workout_plan_by_id(workout_plan_id):
+def get_workout_plan_by_id(workout_plan_id, user_id):
     with Session(engine) as session:
-        query = sqlalchemy.select(WorkoutPlan).options(selectinload(WorkoutPlan.exercises).selectinload(WorkoutPlanExercise.excercise)).where(WorkoutPlan.id == workout_plan_id)
+        query = sqlalchemy.select(WorkoutPlan).options(selectinload(WorkoutPlan.exercises).selectinload(WorkoutPlanExercise.excercise)).where(WorkoutPlan.id == workout_plan_id and WorkoutPlan.user ==user_id)
         return session.execute(query).scalar_one_or_none()
 
 def add_workout(user_id, workout_plan, created):
