@@ -25,10 +25,10 @@ def login(user):
         if auth.check_password(user.password, password) is None:
             raise exceptions.InvalidPasswordError("Podane hasło jest niepoprawne")
 
+
         result = repository.login_user(user.email)
         if result is None:
             raise exceptions.LoginError("Email lub hasło jest nieprawidłowe")
-        print("res", result)
         return auth.create_jwt_token(result, user.email)
 
     except Exception as e:
@@ -84,7 +84,7 @@ def dashboard(jwt):
     user = auth.decode_jwt_token(jwt)
     workouts = repository.get_all_user_workouts(user["id"])
     number_workouts = len(workouts)
-    last_workout = get_workout_plan_byid(workouts[number_workouts-1]["Workouts"].workout_plan_id)
+    last_workout = get_workout_plan_byid(workouts[number_workouts-1]["Workouts"].workout_plan_id,user["id"], jwt)
     return {"name":user["name"],
             "number_workouts":number_workouts,
             "started":workouts[number_workouts-1]["Workouts"].started,
