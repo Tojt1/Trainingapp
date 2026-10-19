@@ -12,6 +12,10 @@
     padding-bottom: 80px;
 }
 
+.error-login{
+    color: red;
+}
+
 .login-form{
     display: flex;
     justify-content: center;
