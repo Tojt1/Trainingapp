@@ -62,11 +62,6 @@ def login_user(user:Login):
             status_code=400,
             detail=str(e)
         )
-    except Exception as e:
-        raise HTTPException(
-            status_code=400,
-            detail=str(e)
-        )
 
 @app.get("/settings")
 def get_user_settings(jwt= Depends(oauth2)):

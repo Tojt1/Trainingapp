@@ -25,6 +25,8 @@ function Login (){
             localStorage.setItem("token", data)
             navigate("/dashboard")
         }
+        else{
+        }
     }
 
     return(

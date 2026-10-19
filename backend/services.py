@@ -18,21 +18,16 @@ def register(user):
         raise exceptions.RegisterError(str(e))
 
 def login(user):
-    try:
-        if not valid_email(user.email):
-            raise exceptions.InvalidEmailError("podany email jest nieprawidłowy")
-        password= repository.get_user_password(user.email)
-        if auth.check_password(user.password, password) is None:
-            raise exceptions.InvalidPasswordError("Podane hasło jest niepoprawne")
+    if not valid_email(user.email):
+        raise exceptions.InvalidEmailError("podany email jest nieprawidłowy")
+    password= repository.get_user_password(user.email)
+    if not auth.check_password(user.password, password):
+        raise exceptions.InvalidPasswordError("Podane hasło jest niepoprawne")
 
-
-        result = repository.login_user(user.email)
-        if result is None:
-            raise exceptions.LoginError("Email lub hasło jest nieprawidłowe")
-        return auth.create_jwt_token(result, user.email)
-
-    except Exception as e:
-        raise Exception(str(e))
+    result = repository.login_user(user.email)
+    if result is None:
+        raise exceptions.LoginError("Email lub hasło jest nieprawidłowe")
+    return auth.create_jwt_token(result, user.email)
 
 def user_settings(jwt):
     try:
