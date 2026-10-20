@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
-import "./Workouts.css"
+import "./Workout.css"
 
 function Workout(){
     const [workout, setWorkout ] = useState(null)
@@ -50,6 +50,7 @@ function Workout(){
                     </div>
                     ))}
             </div>
+            <button className="start-workout">Zacznij</button>
         </div>
     )
 }
