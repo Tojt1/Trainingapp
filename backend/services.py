@@ -48,9 +48,10 @@ def get_exercises():
     except Exception as e:
         raise exceptions.GetExercisesError(str(e))
 
-def create_workout(data):
+def create_workout(data, jwt):
     try:
-        return repository.add_workout_plan(data)
+        user = auth.decode_jwt_token(jwt)
+        return repository.add_workout_plan(data, user["id"])
     except exceptions.AddWorkoutError as e:
         raise exceptions.AddWorkoutError(str(e))
 

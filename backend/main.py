@@ -109,9 +109,9 @@ def get_all_exercises():
         )
 
 @app.post("/workoutplan")
-def create_workout_plan(data:WorkoutPlan):
+def create_workout_plan(data:WorkoutPlan, jwt=Depends(oauth2)):
     try:
-        return services.create_workout(data)
+        return services.create_workout(data, jwt)
     except exceptions.AddWorkoutError as e:
         raise HTTPException(
             status_code=400,

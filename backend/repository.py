@@ -50,13 +50,13 @@ def download_exercises():
     except Exception as e:
         raise exceptions.GetExercisesError(str(e))
 
-def add_workout_plan(data):
+def add_workout_plan(data, user_id):
     try:
         with Session(engine) as session:
-            workout = WorkoutPlan(name=data.name, exercises=[
+            workout = WorkoutPlan(name=data.name, user_id=user_id, exercises=[
                 WorkoutPlanExercise(excercise_id=exercise.exercise_id,
                                     weight=exercise.weight,
-                                    reps=exercise.reps)
+                                    reps=exercise.reps,)
                 for exercise in data.exercises
             ])
 

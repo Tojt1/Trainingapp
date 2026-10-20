@@ -6,6 +6,7 @@ function CreateWorkouts( {onClose} ){
     const [workoutName, setWorkoutName] = useState("")
     const [errorName, setErrorName] = useState("")
     const [chosen, setChosen] = useState([{exercises_id:"", kg:"", rep:""}])
+    const token = localStorage.getItem("token")
 
     useEffect(() => {
         const getExercises = async () => {
@@ -41,7 +42,8 @@ function CreateWorkouts( {onClose} ){
         const response = await fetch("http://localhost:8000/workoutplan", {
             method: "POST",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
                 name: workoutName,
