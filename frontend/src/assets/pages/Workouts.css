@@ -1,60 +1,55 @@
-.workouts-container {
-    min-width: 1100px;
-    margin: 0 auto;
-    padding: 40px 24px;
-    min-height: 100vh;
-    background-color: #0f1117;
-    color: #f1f5f9;
-    font-family: Arial, sans-serif;
+.workout-container {
+    max-width: 1500px;
+    margin: 30px auto;
+    padding: 20px;
 }
 
-.workouts-container h1 {
-    font-size: 32px;
-    font-weight: 700;
-    margin: 0 0 28px;
-    letter-spacing: -0.5px;
+.workout-container h1 {
+    margin-bottom: 20px;
 }
 
-.workouts-container > button {
-    display: inline-flex;
+.workout-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise-card {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: 12px 22px;
-    margin-bottom: 32px;
-    border: none;
-    border-radius: 10px;
-    background: #7c5cff;
-    color: #fff;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+    gap: 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
 }
 
-.workouts-container > button:hover {
-    background: #6845ed;
-    transform: translateY(-2px);
-}
-
-.workouts-container > button:active {
-    transform: translateY(0);
-}
-
-.training-card {
-    padding: 24px;
-    margin-bottom: 16px;
-    background: #191c25;
-    border: 1px solid #292d3a;
-    border-radius: 14px;
+.exercise-card h2 {
+    margin: 0;
     font-size: 18px;
-    font-weight: 600;
-    color: #e2e8f0;
-    transition: border-color 0.2s ease, transform 0.2s ease,
-        background 0.2s ease;
 }
 
-.training-card:hover {
-    background: #1e2230;
-    border-color: #7c5cff;
-    transform: translateY(-3px);
+.exercise-stats {
+    display: flex;
+    gap: 25px;
+    color: white;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 80px;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #777;
+}
+
+.stat-value {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.stat-value small {
+    font-weight: normal;
 }

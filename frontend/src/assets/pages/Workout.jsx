@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router"
-import workouts from "./Workouts.jsx";
+import "./Workouts.css"
 
 function Workout(){
     const [workout, setWorkout ] = useState(null)
@@ -25,15 +25,31 @@ function Workout(){
     if (!workout){
         return <p>ładowanie ćwiczeń....</p>
     }
-    console.log(workout.exercises);
     return(
         <div className="workout-container">
             <h1>{workout.name}</h1>
-            {workout.exercises.map((exercise) =>(
-                <div key={exercise.id}>
-                    <h2>{exercise.excercise.name}</h2>
-                </div>
-                ))}
+            <div className="workout-list">
+                {workout.exercises.map((exercise) =>(
+                    <div className="exercise-card" key={exercise.id}>
+                        <h2>{exercise.excercise.name}</h2>
+                         <div className="exercise-stats">
+                        <div className="stat">
+                            <span className="stat-label">Ciężar</span>
+                            <span className="stat-value">
+                                {exercise.weight} <small>kg</small>
+                            </span>
+                        </div>
+
+                        <div className="stat">
+                            <span className="stat-label">Powtórzenia</span>
+                            <span className="stat-value">
+                                {exercise.reps}
+                            </span>
+                        </div>
+                         </div>
+                    </div>
+                    ))}
+            </div>
         </div>
     )
 }
