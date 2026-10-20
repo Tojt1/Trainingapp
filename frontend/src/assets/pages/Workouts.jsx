@@ -19,12 +19,10 @@ function Workouts(){
                 }
             })
             let data = await response.json()
-            console.log(data)
             setWorkouts(data)
         }
         getWorkouts();
     }, []);
-    console.log(workouts)
 
     return(
         <div className="workouts-container">
@@ -36,12 +34,9 @@ function Workouts(){
             )}
 
             {workouts.map((workout) => (
-                <>
-                {console.log(workout.id)}
                 <div className="training-card" key={workout.id} onClick={() => navigate(`/workouts/${user["id"]}/${workout.id}`)}>
                     {workout.name}
                 </div>
-                </>
             ))}
         </div>
     )
