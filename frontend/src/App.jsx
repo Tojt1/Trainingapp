@@ -9,6 +9,7 @@ import BottomNav from "./assets/components/BottomNav.jsx";
 import User from "./assets/pages/User.jsx";
 import Workouts from "./assets/pages/Workouts.jsx";
 import Workout from "./assets/pages/Workout.jsx";
+import CurrentWorkout from "./assets/pages/CurrentWorkout.jsx";
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/profile" element={<User />} />
                 <Route path="/workouts" element={<Workouts />} />
                 <Route path="/workouts/:user_id/:workout_plan_id" element={<Workout />}/>
+                <Route path="/workouts/:user_id/:workout_plan_id/start" element={<CurrentWorkout />} />
             </Route>
         </Route>
     </Routes>

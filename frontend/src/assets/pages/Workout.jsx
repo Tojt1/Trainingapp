@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router"
 import { useParams } from "react-router"
 import "./Workout.css"
 
@@ -7,6 +8,7 @@ function Workout(){
     const { user_id } = useParams()
     const { workout_plan_id } = useParams()
     const token = localStorage.getItem("token")
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getWorkout_plan = async () => {
@@ -21,6 +23,12 @@ function Workout(){
         }
         getWorkout_plan();
     }, []);
+
+    const handleStartWorkout = () => {
+        navigate("start", {
+            state: { workout },
+        })
+    }
 
     if (!workout){
         return <p>ładowanie ćwiczeń....</p>
@@ -50,7 +58,7 @@ function Workout(){
                     </div>
                     ))}
             </div>
-            <button className="start-workout">Zacznij</button>
+            <button className="start-workout" onClick={handleStartWorkout}>Zacznij</button>
         </div>
     )
 }

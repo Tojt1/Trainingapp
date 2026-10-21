@@ -64,6 +64,9 @@ function CreateWorkouts( {onClose} ){
         :item))
     }
 
+    const handleStart = () => {
+    }
+
     return(
         <div className="cworkout-container">
             <div className="cworkout-background" onClick={onClose}></div>
