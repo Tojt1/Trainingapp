@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useLocation } from "react-router"
 
 function  CurrentWorkout(){
@@ -13,12 +12,12 @@ function  CurrentWorkout(){
         console.log(workoutplan)
     }
 
-    // useEffect(() => {
-    //     const getWorkoutPlan = async () => {
-    //         const response = await fetch("https://localhost:8000/workout")
-    //     }
-    // }, []);
-
+    return(
+        <div className="start-container">
+            <h1>{workoutplan.name}</h1>
+        </div>
+    )
+    
 }
 
 export default CurrentWorkout
