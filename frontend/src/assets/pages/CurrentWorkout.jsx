@@ -15,6 +15,13 @@ function  CurrentWorkout(){
     return(
         <div className="start-container">
             <h1>{workoutplan.name}</h1>
+            <div className="start-list" >
+                {workoutplan.exercises.map((workout) => (
+                    <div className="exercise-inf" key={workout.id}>
+                        <h2>{workout.excercise.name}</h2>
+                    </div>
+                ))}
+            </div>
         </div>
     )
     
