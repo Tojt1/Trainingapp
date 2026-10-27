@@ -39,9 +39,9 @@ function  CurrentWorkout(){
                         </div>
                          <div className="exercise-set">
                             <span className="stat-label">reps</span>
-                            <span className="stat-value">
-                                {workout.reps}<small>reps</small>
-                            </span>
+                             <input
+                             type="number" placeholder={workout.weight}
+                             />
                         </div>
                     </div>
                 ))}
