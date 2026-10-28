@@ -7,6 +7,10 @@ function  CurrentWorkout(){
 
     const workoutplan = state?.workout;
 
+    const allCompleted = workoutplan.exercises.every(
+        (workot) => completedExercises.includes(workot.id)
+    )
+
     if (!workoutplan){
         console.log("wystąpił problem")
     }
@@ -45,6 +49,11 @@ function  CurrentWorkout(){
                         </div>
                     </div>
                 ))}
+                {allCompleted && (
+                    <>
+                        <p>ukonczone</p>
+                    </>
+                    )}
             </div>
         </div>
     )
