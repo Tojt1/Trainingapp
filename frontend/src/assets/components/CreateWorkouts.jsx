@@ -5,7 +5,7 @@ function CreateWorkouts( {onClose} ){
     const [exercises, setExercises] = useState([])
     const [workoutName, setWorkoutName] = useState("")
     const [errorName, setErrorName] = useState("")
-    const [chosen, setChosen] = useState([{exercises_id:"", kg:"", rep:""}])
+    const [chosen, setChosen] = useState([{exercises_id:"", kg:"", reps:[""]}])
     const token = localStorage.getItem("token")
 
     useEffect(() => {
@@ -26,12 +26,29 @@ function CreateWorkouts( {onClose} ){
         if(index === chosen.length-1){
             setChosen((old) => [
                 ...old, {
-                exercises_id:"", kg:'', rep:""
+                exercises_id:"", kg:'', reps:[""]
                 }
             ])
 
         }
     }
+
+   const handleRepsChange = (index, repindex, value) => {
+        setChosen((old) => (
+            old.map((item, i) =>{
+                if (i !== index) return item;
+
+                const reps = [...item.reps]
+                reps[repindex] = value
+
+                if (reps.length -1 === repindex && value !== ""){
+                    reps.push("")
+                }
+                return {...item, reps}
+            })
+
+        ))
+   }
 
     const handleSubmit = async () => {
         if (workoutName.trim() === ""){
@@ -50,7 +67,7 @@ function CreateWorkouts( {onClose} ){
                 exercises: chosen.filter((item) => item.exercises_id !== "").map((item) => ({
                     exercise_id: Number(item.exercises_id),
                     weight: Number(item.kg),
-                    reps: Number(item.rep)}))
+                    reps: Number(item.reps)}))
             })
             })
         if (response.ok){
@@ -64,8 +81,6 @@ function CreateWorkouts( {onClose} ){
         :item))
     }
 
-    const handleStart = () => {
-    }
 
     return(
         <div className="cworkout-container">
@@ -73,7 +88,7 @@ function CreateWorkouts( {onClose} ){
             <div className="workout-front">
                 <input type="text" placeholder="Nazwa..." value={workoutName} onChange={(e) => setWorkoutName(e.target.value)} />
                 <p className="error-name">{errorName}</p>
-                    {[...chosen, ...(chosen.length===0 ?[{exercises_id:"", kg:"" ,rep:""}] :[])].map((item,index)=> (
+                    {[...chosen, ...(chosen.length===0 ?[{exercises_id:"", kg:"" ,reps:[""]}] :[])].map((item, index)=> (
                         <div key={index}>
                             <select id="exercise-select"
                                     value={item.exercises_id}
@@ -85,7 +100,15 @@ function CreateWorkouts( {onClose} ){
                                 ))}
                             </select>
                             <input type="number" placeholder="KG" value={item.kg} onChange={(e) => handleChange(index, "kg", e.target.value)}/>
-                            <input type="number" placeholder="reps" value={item.rep} onChange={(e) =>  handleChange(index, "rep", e.target.value)}/>
+                            <div className="reps-container">
+                                {item.reps.map((rep, repIndex) => (
+                                    <input type="number"
+                                           key={repIndex}
+                                           placeholder={`Seria: ${repIndex +1}`}
+                                           value={rep}
+                                           onChange={(e) =>  handleRepsChange(index, repIndex, e.target.value)}/>
+                                ))}
+                            </div>
                         </div>
                     ))}
                     <button className="workout-submit" onClick={handleSubmit}>Zapisz</button>
