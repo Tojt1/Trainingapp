@@ -62,7 +62,10 @@ def add_workout_plan(data, user_id):
 
             session.add(workout)
             session.commit()
+
+            return workout
     except exceptions.AddWorkoutError as e:
+        session.rollback()
         raise exceptions.AddWorkoutError(str(e))
 
 def get_all_user_workouts(user_id):
