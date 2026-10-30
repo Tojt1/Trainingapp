@@ -81,6 +81,6 @@ class WorkoutPlanExercise(Base):
     )
     excercise: Mapped["Exercise"] = relationship()
     weight:Mapped[float] = mapped_column(Float, nullable=True)
-    reps:Mapped[int] = mapped_column(Integer)
+    reps:Mapped[list[int]] = mapped_column(Integer)
 
 

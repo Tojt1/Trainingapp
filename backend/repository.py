@@ -56,7 +56,7 @@ def add_workout_plan(data, user_id):
             workout = WorkoutPlan(name=data.name, user_id=user_id, exercises=[
                 WorkoutPlanExercise(excercise_id=exercise.exercise_id,
                                     weight=exercise.weight,
-                                    reps=exercise.reps,)
+                                    reps=exercise.reps)
                 for exercise in data.exercises
             ])
 

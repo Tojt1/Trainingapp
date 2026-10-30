@@ -111,13 +111,16 @@ def get_all_exercises():
 @app.post("/workoutplan")
 def create_workout_plan(data:WorkoutPlan, jwt=Depends(oauth2)):
     try:
+        print(data)
         return services.create_workout(data, jwt)
     except exceptions.AddWorkoutError as e:
+        print(data)
         raise HTTPException(
             status_code=400,
             detail=str(e)
         )
     except Exception as e:
+        print(data)
         raise HTTPException(
             status_code=400,
             detail=str(e)

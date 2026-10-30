@@ -55,7 +55,6 @@ function CreateWorkouts( {onClose} ){
             setErrorName("Nazwa treningu jest wymagana")
             return
         }
-
         const response = await fetch("http://localhost:8000/workoutplan", {
             method: "POST",
             headers:{
@@ -67,7 +66,7 @@ function CreateWorkouts( {onClose} ){
                 exercises: chosen.filter((item) => item.exercises_id !== "").map((item) => ({
                     exercise_id: Number(item.exercises_id),
                     weight: Number(item.kg),
-                    reps: Number(item.reps)}))
+                    reps: item.reps.filter((rep) => rep !=="").map(Number)}))
             })
             })
         if (response.ok){

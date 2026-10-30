@@ -16,7 +16,7 @@ class AddExercise(BaseModel):
 class WorkoutPlanExercises(BaseModel):
     exercise_id:int
     weight:float
-    reps:int
+    reps: list[int]
 
 class WorkoutPlan(BaseModel):
     name: str
