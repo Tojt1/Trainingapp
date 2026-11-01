@@ -10,6 +10,7 @@ import User from "./assets/pages/User.jsx";
 import Workouts from "./assets/pages/Workouts.jsx";
 import Workout from "./assets/pages/Workout.jsx";
 import CurrentWorkout from "./assets/pages/CurrentWorkout.jsx";
+import IfLogged from "./assets/components/IfLogged.jsx";
 
 function App() {
 
@@ -18,11 +19,13 @@ function App() {
         <Route element={<ButtonLayouts />}>
             <Route path="/" element={<Welcome/>}></Route>
         </Route>
-        <Route path="/login" element={<Login/>}></Route>
-        <Route path="/register" element={<Register />}></Route>
+        <Route element={<IfLogged />}>
+            <Route path="/login" element={<Login/>} />
+        </Route>
+        <Route path="/register" element={<Register />} />
         <Route element={<CheckLogged />}>
             <Route element={<BottomNav/>}>
-                <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<User />} />
                 <Route path="/workouts" element={<Workouts />} />
                 <Route path="/workouts/:user_id/:workout_plan_id" element={<Workout />}/>
