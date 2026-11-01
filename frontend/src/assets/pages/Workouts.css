@@ -58,3 +58,32 @@
     border-color: #7c5cff;
     transform: translateY(-3px);
 }
+.exercise-stats {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rep-stat {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    margin-right: 8px;
+    background: #292d3a;
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-size: 15px;
+}
+.reps-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}

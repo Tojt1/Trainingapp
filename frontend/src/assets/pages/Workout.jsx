@@ -50,9 +50,11 @@ function Workout(){
 
                         <div className="stat">
                             <span className="stat-label">Powtórzenia</span>
-                            {exercise.reps.map((rep, repIndex) => (
-                                <span className="rep-stat" key={repIndex}>{rep}</span>
-                            ))}
+                            <div className="reps-list">
+                                {exercise.reps.map((rep, repIndex) => (
+                                    <span className="rep-stat" key={repIndex}>{rep}</span>
+                                ))}
+                            </div>
                         </div>
                          </div>
                     </div>
