@@ -3,7 +3,9 @@ import { useState } from "react"
 function DeleteWorkout (){
     const [open, setOpen] = useState(false)
 
-
+    const handleDelete = async () => {
+        const response = await fetch("http://localhost")
+    }
     return(
         <>
             <button className="open-deletU" onClick={() => setOpen(true)}>Usuń konto</button>

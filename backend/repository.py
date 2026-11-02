@@ -96,3 +96,15 @@ def add_workout(user_id, workout_plan, created):
     except Exception as e:
         session.rollback()
         raise exceptions.AddWorkoutError(str(e))
+
+def delete_workout(workout_plan_id):
+    with Session(engine) as session:
+        workout_plan = session.query(WorkoutPlan).filter(WorkoutPlan.id == workout_plan_id).first()
+
+        if not workout_plan:
+            return False
+
+        session.delete(workout_plan)
+        session.commit()
+
+        return True

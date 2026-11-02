@@ -144,6 +144,10 @@ def get_workouts_plans(jwt = Depends(oauth2)):
 def get_workout_plan(user_id:int, workout_plan_id:int, jwt=Depends(oauth2)):
     return services.get_workout_plan_byid(workout_plan_id, user_id, jwt)
 
+@app.delete("/workoutplan/{user_id}/{workout_plan_id}")
+def delete_workout(user_id:int, workout_plan_id:int, jwt=Depends(oauth2)):
+    return services.delete_workout(user_id, workout_plan_id, jwt)
+
 @app.post("/workout")
 def start_workout(jwt, workout_plan:Workout):
     try:

@@ -86,3 +86,11 @@ def dashboard(jwt):
             "started":workouts[number_workouts-1]["Workouts"].started,
             "finished":workouts[number_workouts-1]["Workouts"].ended,
             "workout":[last_workout]}
+
+def delete_workout(user_id, workout_plan_id, jwt):
+    user = auth.decode_jwt_token(jwt)
+    if user["id"] != user_id:
+        raise exceptions.InvalidUserError("Id użytkownika nie zgadza się")
+
+    if repository.delete_workout(workout_plan_id):
+        return {"information": "Pomyślnie usunieto workout plan"}
