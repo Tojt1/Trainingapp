@@ -15,7 +15,7 @@ function DeleteWorkout ( {user_id, workout_plan_id} ){
         })
         if (response.ok){
             alert(await response.json())
-            useNavigate("/workouts")
+            navigate("/workouts")
         }
         else {
             alert(await response.json())
