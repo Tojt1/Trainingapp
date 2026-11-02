@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router"
 import { useParams } from "react-router"
 import "./Workout.css"
+import DeleteWorkout from "../components/DeleteWorkout.jsx";
 
 function Workout(){
     const [workout, setWorkout ] = useState(null)
@@ -61,6 +62,7 @@ function Workout(){
                     ))}
             </div>
             <button className="start-workout" onClick={handleStartWorkout}>Zacznij</button>
+            <DeleteWorkout />
         </div>
     )
 }
