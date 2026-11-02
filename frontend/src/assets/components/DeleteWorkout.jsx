@@ -1,10 +1,22 @@
 import { useState } from "react"
 
-function DeleteWorkout (){
+function DeleteWorkout ( {user_id, workout_plan_id} ){
     const [open, setOpen] = useState(false)
+    const token = localStorage.getItem("token")
 
     const handleDelete = async () => {
-        const response = await fetch("http://localhost")
+        const response = await fetch(`http://localhost/workoutplan/${user_id}/${workout_plan_id}`, {
+            method:"DELETE",
+            headers:{
+                "Authorization":`Bearer ${token}`
+            }
+        })
+        if (response.ok){
+            alert(response.json())
+        }
+        else {
+            alert(response.json())
+        }
     }
     return(
         <>
