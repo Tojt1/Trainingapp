@@ -75,3 +75,13 @@
 .start-workout:active{
     transform: translateY(0);
 }
+.delete-workout {
+    display: block;
+    margin: 30px auto;
+}
+.btn-container{
+    display: block;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import "./DeleteWorkout.css"
 
 function DeleteWorkout ( {user_id, workout_plan_id} ){
     const [open, setOpen] = useState(false)
@@ -28,8 +29,10 @@ function DeleteWorkout ( {user_id, workout_plan_id} ){
                 <div className="delete-account-background" onClick={() => setOpen(false)}>
                     <div className="delete-account-container" onClick={(e) => e.stopPropagation()}>
                         <p>Czy na pewno chcesz usunąć to ćwiczenie?</p>
-                        <button className="confirm-btn" onClick={() => handleDelete()}>Tak</button>
-                        <button className="denied-btn" onClick={() => setOpen(false)}>Nie</button>
+                        <div className="btn-container">
+                            <button className="confirm-btn" onClick={() => handleDelete()}>Tak</button>
+                            <button className="denied-btn" onClick={() => setOpen(false)}>Nie</button>
+                        </div>
                     </div>
                 </div>
             )}

@@ -61,8 +61,10 @@ function Workout(){
                     </div>
                     ))}
             </div>
-            <button className="start-workout" onClick={handleStartWorkout}>Zacznij</button>
-            <DeleteWorkout user_id={user_id} workout_plan_id={workout_plan_id} />
+            <div className="btn-container">
+                <button className="start-workout" onClick={handleStartWorkout}>Zacznij</button>
+                <DeleteWorkout user_id={user_id} workout_plan_id={workout_plan_id} />
+            </div>
         </div>
     )
 }
